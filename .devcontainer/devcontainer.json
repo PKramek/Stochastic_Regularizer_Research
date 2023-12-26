@@ -1,0 +1,19 @@
+{
+	"name": "research_activation_swap",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"runArgs": [
+		"--gpus",
+		"all"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.black-formatter",
+				"ms-python.flake8"
+			]
+		}
+	}
+}
