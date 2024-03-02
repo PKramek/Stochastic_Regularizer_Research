@@ -5,7 +5,7 @@ NOTE: This repository is still a work in progress, and there are currently no de
 ### Motivation
 
 Regularization plays a crucial role in ensuring good test-time results for a NN. One of the ways regularization can be achieved is by using batch normalization [1] 
-(although it is not its main purpose), which adds stochastically to the training process by estimating the mean and standard deviation based on the data in a batch. This process acts as a regularizer because, for each sample, we get a slightly different output in each forward pass. However, the usage of batch norm is limited, and more often than not, layer normalization [2] is used. 
+(although it is not its main purpose), which adds stochasticity to the training process by estimating the mean and standard deviation based on the data in a batch. This process acts as a regularizer because, for each sample, we get a slightly different output in each forward pass. However, the usage of batch norm is limited, and more often than not, layer normalization [2] is used. 
 
 One of the most commonly used regularizers is dropout [3] which randomly selects neurons in the layer and sets their output to 0. This intervention encourages the optimization process to search for subnetworks that can perform the required transformation and then create an ensemble of such subnetworks.  
 
@@ -17,9 +17,9 @@ The experiments presented in this repository explore an idea based on the two pr
 - For each selected neuron, generate a scaling factor from the normal distribution N(1, std).
 - Scale the output of a given neuron by the given random scaling factor.
 
-Hopefully, this process will encourage the optimization process to generate even more subnetworks, because we randomly strengthen or weaken certain connections in the network (instead of completely blocking them, like in the case of dropout)
+Hopefully, this process will encourage the optimization process to generate more subnetworks, because we randomly strengthen or weaken certain connections in the network (instead of completely blocking them, like in the case of dropout)
 
-The described intervention could also be described as adding stochastic data augmentation to the network structure, when applied to one of the first layers.
+The described intervention could also be described as adding stochastic data augmentation to the network structure itself, when applied to one of the first layers.
 
 
 ### Bibliography
