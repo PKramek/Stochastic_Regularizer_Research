@@ -1,14 +1,21 @@
 [tool.poetry]
-name = "pytorch-2-0-test"
+name = "Random_noise_NN_research"
 version = "0.1.0"
 description = ""
 authors = ["PKramek <peterkramek@gmail.com>"]
-readme = "README.md"
-packages = [{include = "pytorch_2_0_test"}]
+packages = [{include = "Random_noise_NN_research"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-torch = "2.0.0"
+torch = "2.1.2"
+pytest = "^7.4.3"
+scipy = "^1.11.4"
+optuna = "^3.5.0"
+torchvision = "^0.16.2"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.28.0"
+notebook = "^7.0.6"
 
 [build-system]
 requires = ["poetry-core"]

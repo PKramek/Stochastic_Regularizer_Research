@@ -24,7 +24,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
     libffi-dev \
     liblzma-dev \
     openssh-client \ 
-    # libraries for wheel and scipy
     libatlas-base-dev \ 
     gfortran \ 
     libblas3 \ 
