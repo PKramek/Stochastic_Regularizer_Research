@@ -14,7 +14,7 @@ One of the most commonly used regularizers is dropout [3] which randomly selects
 The experiments presented in this repository explore an idea based on the two previously mentioned regularization methods. The basic idea is as follows:
 
 - In a single layer, randomly select k neurons.
-- For each selected neuron, generate a scaling factor from the normal distribution N(0, std).
+- For each selected neuron, generate a scaling factor from the normal distribution N(1, std).
 - Scale the output of a given neuron by the given random scaling factor.
 
 Hopefully, this process will encourage the optimization process to generate even more subnetworks, because we randomly strengthen or weaken certain connections in the network (instead of completely blocking them, like in the case of dropout)
