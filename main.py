@@ -16,6 +16,7 @@ from random_noise_networks.experiment_objective import (
     RandomScalingThreeLayerPerceptronExperimentObjective,
     RandomUniformScalingThreeLayerPerceptronExperimentObjective,
     RandomNoiseThreeLayerPerceptronExperimentObjective,
+    RandomMaskedScalingThreeLayerPerceptronExperimentObjective,
     RandomScalingWithDropoutThreeLayerPerceptronExperimentObjective,
 )
 
@@ -34,6 +35,9 @@ EXPERIMENT_RANDOM_NOISE_THREE_LAYER_PERCEPTRON = "Random Noise Three Layer Perce
 EXPERIMENT_RANDOM_SCALING_THREE_LAYER_PERCEPTRON = (
     "Random Scaling Three Layer Perceptron"
 )
+EXPERIMENT_RANDOM_MASKED_SCALING_THREE_LAYER_PERCEPTRON = (
+    "Random Masked Scaling Three Layer Perceptron"
+)
 EXPERIMENT_RANDOM_SCALING_WITH_DROPOUT_THREE_LAYER_PERCEPTRON = (
     "Random Scaling with Dropout Three Layer Perceptron"
 )
@@ -48,6 +52,7 @@ EXPERIMENTS: Dict[str, Type[ExperimentObjectiveBase]] = {
     EXPERIMENT_DROPOUT_THREE_LAYER_PERCEPTRON: DropoutThreeLayerPerceptronExperimentObjective,
     EXPERIMENT_RANDOM_NOISE_THREE_LAYER_PERCEPTRON: RandomNoiseThreeLayerPerceptronExperimentObjective,
     EXPERIMENT_RANDOM_SCALING_THREE_LAYER_PERCEPTRON: RandomScalingThreeLayerPerceptronExperimentObjective,
+    EXPERIMENT_RANDOM_MASKED_SCALING_THREE_LAYER_PERCEPTRON: RandomMaskedScalingThreeLayerPerceptronExperimentObjective,
     EXPERIMENT_RANDOM_UNIFORM_SCALING_THREE_LAYER_PERCEPTRON: RandomUniformScalingThreeLayerPerceptronExperimentObjective,
     EXPERIMENT_RANDOM_SCALING_WITH_DROPOUT_THREE_LAYER_PERCEPTRON: RandomScalingWithDropoutThreeLayerPerceptronExperimentObjective,
 }
@@ -71,9 +76,7 @@ logger.info(f"Using device: {DEVICE}")
 # %%
 
 if __name__ == "__main__":
-    CURRENT_EXPERIMENT_NAME = (
-        EXPERIMENT_RANDOM_SCALING_WITH_DROPOUT_THREE_LAYER_PERCEPTRON
-    )
+    CURRENT_EXPERIMENT_NAME = EXPERIMENT_RANDOM_MASKED_SCALING_THREE_LAYER_PERCEPTRON
     CURRENT_EXPERIMENT_OBJECTIVE = EXPERIMENTS[CURRENT_EXPERIMENT_NAME]
 
     logger.info(f"Running experiment: {CURRENT_EXPERIMENT_NAME}")

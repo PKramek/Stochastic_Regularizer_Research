@@ -4,6 +4,7 @@ from .experiment_objective import (
     DropoutThreeLayerPerceptronExperimentObjective,
     RandomNoiseThreeLayerPerceptronExperimentObjective,
     RandomScalingThreeLayerPerceptronExperimentObjective,
+    RandomMaskedScalingThreeLayerPerceptronExperimentObjective,
     RandomUniformScalingThreeLayerPerceptronExperimentObjective,
     RandomScalingWithDropoutThreeLayerPerceptronExperimentObjective,
 )
@@ -14,6 +15,7 @@ __all__ = [
     "ThreeLayerPerceptronExperimentObjective",
     "DropoutThreeLayerPerceptronExperimentObjective",
     "RandomNoiseThreeLayerPerceptronExperimentObjective",
+    "RandomMaskedScalingThreeLayerPerceptronExperimentObjective",
     "RandomUniformScalingThreeLayerPerceptronExperimentObjective",
     "RandomScalingThreeLayerPerceptronExperimentObjective",
     "RandomScalingWithDropoutThreeLayerPerceptronExperimentObjective",
