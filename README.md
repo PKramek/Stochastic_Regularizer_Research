@@ -4,7 +4,8 @@ NOTE: This repository is still a work in progress, and there are currently no de
 
 ### Motivation
 
-Regularization plays a crucial role in ensuring good test-time results for a NN. One of the ways regularization can be achieved is by using batch normalization [1], which adds stochastically to the training process by estimating the mean and standard deviation based on the data in a batch. This process acts as a regularizer because, for each sample, we get a slightly different output in each forward pass. However, the usage of batch norm is limited, and more often than not, layer normalization [2] is used. 
+Regularization plays a crucial role in ensuring good test-time results for a NN. One of the ways regularization can be achieved is by using batch normalization [1] 
+(although it is not its main purpose), which adds stochastically to the training process by estimating the mean and standard deviation based on the data in a batch. This process acts as a regularizer because, for each sample, we get a slightly different output in each forward pass. However, the usage of batch norm is limited, and more often than not, layer normalization [2] is used. 
 
 One of the most commonly used regularizers is dropout [3] which randomly selects neurons in the layer and sets their output to 0. This intervention encourages the optimization process to search for subnetworks that can perform the required transformation and then create an ensemble of such subnetworks [4].  
 
