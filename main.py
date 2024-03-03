@@ -18,6 +18,7 @@ from random_noise_networks.experiment_objective import (
     RandomNoiseThreeLayerPerceptronExperimentObjective,
     RandomMaskedScalingThreeLayerPerceptronExperimentObjective,
     RandomScalingWithDropoutThreeLayerPerceptronExperimentObjective,
+    RandomMaskedFirstLayerPreScalingThreeLayerPerceptronExperimentObjective,
 )
 
 logger = logging.getLogger()
@@ -38,6 +39,11 @@ EXPERIMENT_RANDOM_SCALING_THREE_LAYER_PERCEPTRON = (
 EXPERIMENT_RANDOM_MASKED_SCALING_THREE_LAYER_PERCEPTRON = (
     "Random Masked Scaling Three Layer Perceptron"
 )
+
+EXPERIMENT_RANDOM_MASKED_FIRST_LAYER_SCALING_THREE_LAYER_PERCEPTRON = (
+    "Random Masked Scaling of the first layer pre non-linearity Three Layer Perceptron"
+)
+
 EXPERIMENT_RANDOM_SCALING_WITH_DROPOUT_THREE_LAYER_PERCEPTRON = (
     "Random Scaling with Dropout Three Layer Perceptron"
 )
@@ -55,6 +61,7 @@ EXPERIMENTS: Dict[str, Type[ExperimentObjectiveBase]] = {
     EXPERIMENT_RANDOM_MASKED_SCALING_THREE_LAYER_PERCEPTRON: RandomMaskedScalingThreeLayerPerceptronExperimentObjective,
     EXPERIMENT_RANDOM_UNIFORM_SCALING_THREE_LAYER_PERCEPTRON: RandomUniformScalingThreeLayerPerceptronExperimentObjective,
     EXPERIMENT_RANDOM_SCALING_WITH_DROPOUT_THREE_LAYER_PERCEPTRON: RandomScalingWithDropoutThreeLayerPerceptronExperimentObjective,
+    EXPERIMENT_RANDOM_MASKED_FIRST_LAYER_SCALING_THREE_LAYER_PERCEPTRON: RandomMaskedFirstLayerPreScalingThreeLayerPerceptronExperimentObjective,
 }
 
 
@@ -63,7 +70,7 @@ NUMBER_OF_EPOCHS = 20
 INPUT_SIZE = 28 * 28
 OUTPUT_SIZE = 10
 
-N_TRIALS = 500 * 2
+N_TRIALS = 500 * 4
 TIMEOUT = 5 * 60 * 60
 
 USE_CUDA = True
@@ -76,7 +83,9 @@ logger.info(f"Using device: {DEVICE}")
 # %%
 
 if __name__ == "__main__":
-    CURRENT_EXPERIMENT_NAME = EXPERIMENT_RANDOM_MASKED_SCALING_THREE_LAYER_PERCEPTRON
+    CURRENT_EXPERIMENT_NAME = (
+        EXPERIMENT_RANDOM_MASKED_FIRST_LAYER_SCALING_THREE_LAYER_PERCEPTRON
+    )
     CURRENT_EXPERIMENT_OBJECTIVE = EXPERIMENTS[CURRENT_EXPERIMENT_NAME]
 
     logger.info(f"Running experiment: {CURRENT_EXPERIMENT_NAME}")

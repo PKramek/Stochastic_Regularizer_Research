@@ -3,6 +3,7 @@ from .random_noise_perceptron import (
     RandomNoiseThreeLayerPerceptron,
     RandomScalingThreeLayerPerceptron,
     RandomMaskedScalingThreeLayerPerceptron,
+    RandomMaskedFirstLayerPreScalingThreeLayerPerceptron,
     RandomUniformScalingThreeLayerPerceptron,
     RandomScalingWithDropoutThreeLayerPerceptron,
 )
@@ -13,6 +14,7 @@ __all__ = [
     "RandomNoiseThreeLayerPerceptron",
     "RandomScalingThreeLayerPerceptron",
     "RandomMaskedScalingThreeLayerPerceptron",
+    "RandomMaskedFirstLayerPreScalingThreeLayerPerceptron",
     "RandomUniformScalingThreeLayerPerceptron",
     "RandomScalingWithDropoutThreeLayerPerceptron",
     "DropoutThreeLayerPerceptron",

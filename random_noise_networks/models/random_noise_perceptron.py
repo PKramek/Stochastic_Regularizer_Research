@@ -125,6 +125,60 @@ class RandomMaskedScalingThreeLayerPerceptron(nn.Module):
         return output
 
 
+class RandomMaskedFirstLayerPreScalingThreeLayerPerceptron(nn.Module):
+    def __init__(
+        self,
+        input_size: int,
+        output_size: int,
+        hidden_size: int,
+        random_scaling_prob: float,
+        std: float,
+    ):
+        super(RandomMaskedFirstLayerPreScalingThreeLayerPerceptron, self).__init__()
+        if hidden_size < 0:
+            raise ValueError(
+                f"Hidden size must be grater than 0, but got {hidden_size}"
+            )
+        if input_size < 0:
+            raise ValueError(f"Input size must be grater than 0, but got {input_size}")
+        if output_size < 0:
+            raise ValueError(
+                f"Output size must be grater than 0, but got {output_size}"
+            )
+        if random_scaling_prob < 0 or random_scaling_prob > 1:
+            raise ValueError(
+                f"Random scaling application probability has to be between 0 and 1, but got {random_scaling_prob}"
+            )
+        if std < 0:
+            raise ValueError(
+                f"Random noise std has to be greater than 0, but got {random_scaling_prob}"
+            )
+        self._input_size = input_size
+        self._hidden_size = hidden_size
+        self._output_size = output_size
+        self._random_scaling_prob = random_scaling_prob
+        self._std = std
+
+        self._fc1 = nn.Linear(self._input_size, self._hidden_size)
+        self._fc2 = nn.Linear(self._hidden_size, self._hidden_size)
+        self._fc3 = nn.Linear(self._hidden_size, self._output_size)
+
+        self._random_scaler1 = MaskedNormalRandomScaler(
+            p=self._random_scaling_prob, std=self._std
+        )
+
+    def forward(self, x):
+        x = self._fc1(x)
+        x = self._random_scaler1(x)
+        x = F.relu(x)
+        x = self._fc2(x)
+        x = F.relu(x)
+        x = self._fc3(x)
+        output = F.softmax(x, dim=1)
+
+        return output
+
+
 class RandomScalingThreeLayerPerceptron(nn.Module):
     def __init__(
         self,

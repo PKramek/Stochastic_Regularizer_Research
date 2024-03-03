@@ -13,6 +13,7 @@ from random_noise_networks.models import (
     RandomMaskedScalingThreeLayerPerceptron,
     RandomUniformScalingThreeLayerPerceptron,
     RandomScalingWithDropoutThreeLayerPerceptron,
+    RandomMaskedFirstLayerPreScalingThreeLayerPerceptron,
     ThreeLayerPerceptron,
 )
 
@@ -93,6 +94,27 @@ class RandomMaskedScalingThreeLayerPerceptronExperimentObjective(
 
         HIDDEN_SIZE = 1024
         model = RandomMaskedScalingThreeLayerPerceptron(
+            hidden_size=HIDDEN_SIZE,
+            input_size=self._input_size,
+            output_size=self._output_size,
+            random_scaling_prob=random_scaling_prob,
+            std=random_scaling_std,
+        )
+
+        return model
+
+
+class RandomMaskedFirstLayerPreScalingThreeLayerPerceptronExperimentObjective(
+    ExperimentObjectiveBase
+):
+    def get_model(self, trial: optuna.trial.Trial) -> nn.Module:
+        random_scaling_prob = trial.suggest_float(
+            "random_scaling_prob", low=0.1, high=1.0, step=0.1
+        )
+        random_scaling_std = trial.suggest_float("std", low=1e-5, high=1.0)
+
+        HIDDEN_SIZE = 1024
+        model = RandomMaskedFirstLayerPreScalingThreeLayerPerceptron(
             hidden_size=HIDDEN_SIZE,
             input_size=self._input_size,
             output_size=self._output_size,
