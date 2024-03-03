@@ -1,6 +1,6 @@
 This repository contains code for my experiments with a novel stochastic regularizer similar in principle to dropout and batch norm.
 
-NOTE: This repository is still a work in progress, and there are currently no decisive results. The described regularizer does stabilize the training process, making the network less susceptible to changes in the hyperparameters, but as of now, it does not beat dropout. The intervention is not fully orthogonal to the approach used in dropout, but they could potentially be used together. However, more tests are needed to test this hypothesis.
+NOTE: This repository is still a work in progress, and there are currently no decisive results. The described, unmasked regularizer does stabilize the training process, making the network less susceptible to changes in the hyperparameters, but as of now, it does not beat dropout. The intervention is not fully orthogonal to the approach used in dropout, but they could potentially be used together. However, more tests are needed to test this hypothesis.
 
 ### Motivation
 
@@ -14,13 +14,14 @@ One of the most commonly used regularizers is dropout [3] which randomly selects
 The experiments presented in this repository explore an idea based on the two previously mentioned regularization methods. The basic idea is as follows:
 
 - In a single layer, randomly select k neurons.
-- For each selected neuron, generate a scaling factor from the normal distribution N(1, std).
+- For each selected neuron, generate a scaling factor from the normal distribution *N(1, std)*.
 - Scale the output of a given neuron by the given random scaling factor.
 
 Hopefully, this process will encourage the optimization process to generate more subnetworks, because we randomly strengthen or weaken certain connections in the network (instead of completely blocking them, like in the case of dropout)
 
 The described intervention could also be described as adding stochastic data augmentation to the network structure itself, when applied to one of the first layers.
 
+Another version of the intervention, where the whole layer is randomly scaled with a given probability *p* is also explored in the experiments. Currently, this approach gives the best results in the case of the most basic NN on a MNIST dataset.
 
 ### Bibliography
 - [1] Ioffe, S. and Szegedy, C., 2015, June. Batch normalization: Accelerating deep network training by reducing internal covariate shift. In International conference on machine learning (pp. 448-456). pmlr. - https://arxiv.org/abs/1502.03167
